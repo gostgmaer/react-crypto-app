@@ -1,12 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import Header from "./Components/Header/Header";
+import RouterNavigation from "./Router/Router";
 
 function App() {
   return (
-    <ChakraProvider>
-      <div className="App"></div>
-    </ChakraProvider>
+    <div className="app">
+      <Header></Header>
+      <RouterNavigation></RouterNavigation>
+    </div>
   );
 }
 

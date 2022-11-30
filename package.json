@@ -24,6 +24,7 @@
     "react-accessible-accordion": "^5.0.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-typeahead": "^6.0.0",
+    "react-chartjs-2": "^5.0.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-loader-spinner": "^5.3.4",
