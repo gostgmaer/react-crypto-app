@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Coin from "../Pages/Coin/Coin";
+import CoinDetails from "../Pages/CoinDetails/CoinDetails";
 import ExchangeDetails from "../Pages/ExchangeDetails.js/ExchangeDetails";
 import Exchange from "../Pages/Exchanges/Exchange";
 
@@ -14,7 +15,7 @@ const RouterNavigation = () => {
       <Route path="/" element={<Home></Home>}/>
       <Route path={`coins`} element={<Coin></Coin>}></Route>
       <Route path={`exchanges`} element={<Exchange></Exchange>}></Route>
-      <Route path={`about`} element={<Coin></Coin>}></Route>
+      <Route path={`coins/:id`} element={<CoinDetails></CoinDetails>}></Route>
       <Route path={`contact`} element={<Coin></Coin>}></Route>
       <Route path={`pathdaynews`} element={<Coin></Coin>}></Route>
       <Route path={`porfolio`} element={<Coin></Coin>}></Route>

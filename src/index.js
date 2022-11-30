@@ -6,14 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { AppProvider } from "./utility/Context/Context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+   
+    <AppProvider>
       <ChakraProvider theme={theme}>
         <App />
-      </ChakraProvider>
-    </BrowserRouter>
+      </ChakraProvider></AppProvider>
+   
   </React.StrictMode>
 );
 
