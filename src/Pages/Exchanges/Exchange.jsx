@@ -16,7 +16,7 @@ const Exchange = () => {
         "get",
         "",
         { accept: "application/json" },
-        { per_page: 250, page: count }
+        { per_page: 100, page: count }
       );
       console.log(data);
       setExchanges(data);
