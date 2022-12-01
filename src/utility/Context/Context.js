@@ -24,7 +24,7 @@ const AppProvider = ({ children }) => {
   const [Text, setText] = useState("");
   const [expanseHistory, setExpanseHistory] = useState([]);
   const [interval, setinterval] = useState('day');
-  const [days, setDays] = useState('max');
+  const [days, setDays] = useState('1');
 
   const addExpanse = (e) => {
     e.preventDefault();
@@ -74,6 +74,7 @@ const AppProvider = ({ children }) => {
 
   const apicALL = async (endpoint, method, body, query, data) => {
     const headerParams = { accept: "application/json" };
+    setloading(true)
     try {
       const res = await invokeAPI(endpoint,method,body,headerParams,query);
       data(res);

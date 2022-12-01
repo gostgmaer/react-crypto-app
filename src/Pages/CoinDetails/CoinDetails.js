@@ -3,9 +3,20 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../../utility/Context/Context";
 import ChartData from "../../Components/Charts/ChartData";
 import { currencyMock } from "../../Assets/StaticData/Data";
+import { Bars } from "react-loader-spinner";
+import { FaArrowDown, FaArrowUp, FaBarcode } from "react-icons/fa";
+
 const CoinDetails = () => {
-  const { loading, apicALL, count, interval, days, setDays,changeCurrencyValue,currency } =
-    useGlobalContext();
+  const {
+    loading,
+    apicALL,
+    count,
+    interval,
+    days,
+    setDays,
+    changeCurrencyValue,
+    currency,
+  } = useGlobalContext();
 
   const [coinDetails, setcoinDetails] = useState();
   const [chartVolium, setChartVolium] = useState();
@@ -26,27 +37,60 @@ const CoinDetails = () => {
       },
       setcoinDetails
     );
-    apicALL(`coins/${id}/market_chart`, "get", "", {
-      vs_currency: currency,
-      days: days,
-      interval: interval,
-    },setChartVolium);
-  }, [id,currency]);
+    apicALL(
+      `coins/${id}/market_chart`,
+      "get",
+      "",
+      {
+        vs_currency: currency,
+        days: days,
+        interval: interval,
+      },
+      setChartVolium
+    );
+  }, [id, currency]);
 
   console.log(coinDetails ? coinDetails : "No data ");
   return (
-    <div>
-      <div class="mb-3">
-        <label for="currencySelect" class="form-label">Curency</label>
-        <select class="form-select form-select-lg" name="currencySelect" id="currencySelect" onChange={e=>changeCurrencyValue(e.target.value)} >
-        
-          {currencyMock.map((item,index)=>{
-            return  <option key={index} value={item.cc}>{item.name}</option>
-          })}
-         
-        </select>
+    <div className=" container">
+      <div class="card">
+        <div class="m-3  col-5">
+          <select
+            class="form-select form-select-lg"
+            name="currencySelect"
+            id="currencySelect"
+            onChange={(e) => changeCurrencyValue(e.target.value)}
+          >
+            {currencyMock.map((item, index) => {
+              return (
+                <option key={index} value={item.cc}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        {loading ? (
+          <Bars width={``}></Bars>
+        ) : (
+          <div class="card-body">
+            <img
+              className=" rounded-circle"
+              src={coinDetails?.image.large}
+              alt=""
+            />
+            <p class="card-text  align-items-center d-flex">
+              {coinDetails.market_data.price_change_percentage_24h < 0 ? (
+                <FaArrowDown></FaArrowDown>
+              ) : (
+                <FaArrowUp></FaArrowUp>
+              )}
+              {coinDetails.market_data.price_change_percentage_24h}%
+            </p>
+          </div>
+        )}
       </div>
-      <ChartData></ChartData>
+      <ChartData Type='Bar'></ChartData>
     </div>
   );
 };
